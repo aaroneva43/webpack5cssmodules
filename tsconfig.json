@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "noEmitOnError": true,
+    "module": "commonjs",
+    "removeComments": false,
+    "sourceMap": true,
+    "target": "es5",
+    "jsx": "react",
+    "plugins": [{ "name": "typescript-plugin-css-modules" }]
+  },
+  "exclude": ["node_modules"]
+}
