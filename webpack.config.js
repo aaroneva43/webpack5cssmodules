@@ -8,7 +8,7 @@ const SRC_DIR = path.resolve(__dirname, 'src');
 const BUILD_DIR = path.resolve(__dirname, 'build');
 const mode = process.env.WEBPACK_DEV_SERVER === 'true' ? 'development' : 'production';
 const prod = mode === 'production';
-const DEV_PORT = 8081;
+const DEV_PORT = 8082;
 
 /* webpack config start */
 module.exports = (env = {}) => {
@@ -47,8 +47,19 @@ module.exports = (env = {}) => {
           ],
         },
         {
-          test: /\.css$/,
-          use: [MiniCssExtractPlugin.loader, 'css-loader'],
+          test: /\.module\.css$/,
+          use: [
+            MiniCssExtractPlugin.loader,
+            {
+              loader: 'css-loader',
+              options: {
+                modules: {
+                  mode: 'local',
+                  localIdentName: '[name]__[local]___[hash:4]',
+                },
+              },
+            },
+          ],
         },
       ],
     },
