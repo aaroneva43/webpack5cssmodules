@@ -47,9 +47,12 @@ module.exports = (env = {}) => {
           ],
         },
         {
-          test: /\.module\.css$/,
+          test: /\.module\.css|less$/,
           use: [
-            MiniCssExtractPlugin.loader,
+            // MiniCssExtractPlugin.loader,
+            {
+              loader: 'style-loader',
+            },
             {
               loader: 'css-loader',
               options: {
@@ -58,6 +61,9 @@ module.exports = (env = {}) => {
                   localIdentName: '[name]__[local]___[hash:4]',
                 },
               },
+            },
+            {
+              loader: 'less-loader',
             },
           ],
         },
