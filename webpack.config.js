@@ -8,13 +8,14 @@ const SRC_DIR = path.resolve(__dirname, 'src');
 const BUILD_DIR = path.resolve(__dirname, 'build');
 const mode = process.env.WEBPACK_DEV_SERVER === 'true' ? 'development' : 'production';
 const prod = mode === 'production';
-const DEV_PORT = 8082;
+const DEV_PORT = 8085;
 
 /* webpack config start */
 module.exports = (env = {}) => {
   return {
     mode,
     entry: path.join(SRC_DIR, 'index.tsx'),
+    devtool: 'inline-source-map',
     output: {
       path: BUILD_DIR,
       filename: `[name].bundle.${prod ? new Date().Format('yyyyMMddhhmm') : 'dev'}.js`,
@@ -68,6 +69,9 @@ module.exports = (env = {}) => {
           ],
         },
       ],
+    },
+    resolve: {
+      extensions: ['.js', '.jsx', '.ts', '.tsx'],
     },
 
     plugins: [
